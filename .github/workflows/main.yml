@@ -15,12 +15,13 @@ concurrency:
 # Sets global environtment variables
 env:
   OWNER: ${{ github.repository_owner }}
-
+  RUNON: ${{ github.ref_name != 'main' && 'self-hosted' || 'windows-latest' }}
+  
 jobs:
   # Build job
   github-pages:
     if: github.event.workflow_run.conclusion == 'success'
-    runs-on: ${{ github.ref_name != 'main' && 'self-hosted' || 'windows-latest' }}
+    runs-on: ${{ vars.RUNON }}
     steps:
       - name: 📂 Checkout
         uses: actions/checkout@v3
