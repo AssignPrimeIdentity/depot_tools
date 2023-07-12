@@ -21,7 +21,7 @@ jobs:
   # Build job
   github-pages:
     if: github.event.workflow_run.conclusion == 'success'
-    runs-on: ${{ env.RUNON }}
+    runs-on: ${{ RUNON }}
     steps:
       - name: 📂 Checkout
         uses: actions/checkout@v3
